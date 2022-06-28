@@ -1,6 +1,15 @@
 package main
 
-import "fmt"
+import (
+	database "DAO/Database"
+	utils "DAO/Utils"
+	"fmt"
+)
+
+func init() {
+	utils.LoadConfig()
+	database.ConnectDB()
+}
 
 func main() {
 
