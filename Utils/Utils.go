@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type Utils struct {
+type DBConfig struct {
 	Port       string
 	Hostdb     string
 	Portdb     string
@@ -16,7 +16,7 @@ type Utils struct {
 	Dbname     string
 }
 
-var CallConfig *Utils
+var CallConfig *DBConfig
 
 func LoadConfig() {
 	err := godotenv.Load(".env")
@@ -24,7 +24,7 @@ func LoadConfig() {
 		log.Fatal(err.Error())
 	}
 
-	CallConfig = &Utils{
+	CallConfig = &DBConfig{
 		Port:       os.Getenv("PORT"),
 		Hostdb:     os.Getenv("HOSTDB"),
 		Portdb:     os.Getenv("PORTDB"),

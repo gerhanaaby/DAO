@@ -2,7 +2,9 @@ package database
 
 import (
 	utils "DAO/Utils"
+	"DAO/models"
 	"fmt"
+	"log"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -25,8 +27,29 @@ func ConnectDB() {
 	if err != nil {
 		panic(err)
 	}
-	// db.Debug().AutoMigrate(&models.Customer{}, &models.Order{}, &models.Item{})
+
 }
 func GetDB() *gorm.DB {
 	return db
+}
+
+func DBMigrate() {
+	for _, model := range models.RegisterModels() {
+		err := db.Debug().AutoMigrate(model.Model)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	fmt.Println("Database migrated successfully")
+
+}
+func DBDropTable() {
+	for _, model := range models.RegisterModels() {
+		err := db.Debug().Migrator().DropTable(model.Model)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	fmt.Println("Database drop all table successfully")
+
 }
