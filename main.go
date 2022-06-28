@@ -1,8 +1,8 @@
 package main
 
 import (
-	database "DAO/Database"
-	utils "DAO/Utils"
+	"DAO/database"
+	"DAO/utils"
 	"fmt"
 )
 
