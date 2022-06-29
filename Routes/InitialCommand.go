@@ -51,6 +51,7 @@ func Runing(addr string) {
 	fmt.Printf("Listening to port %s", addr)
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
+
 func Run() {
 
 	flag.Parse()
@@ -58,7 +59,8 @@ func Run() {
 	if arg != "" {
 		initCommands()
 	} else {
-		//Initialize()
+		utils.LoadConfig()
+		database.ConnectDB()
 		database.DBMigrate()
 		Runing(":" + utils.CallConfig.Port)
 

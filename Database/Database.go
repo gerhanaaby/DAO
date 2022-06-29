@@ -1,8 +1,8 @@
 package database
 
 import (
-	utils "DAO/Utils"
 	"DAO/models"
+	"DAO/utils"
 	"fmt"
 	"log"
 
