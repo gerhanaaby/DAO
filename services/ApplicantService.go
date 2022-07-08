@@ -5,7 +5,7 @@ import (
 	"DAO/models"
 )
 
-func CreateApplicant(applicant models.Applicants) error {
-	err := database.GetDB().Debug().Create(&applicant).Error
+func CreateApplicant(applicant models.ApplicantsRequest) error {
+	err := database.GetDB().Debug().Table("applicants").Create(&applicant).Error
 	return err
 }

@@ -9,15 +9,12 @@ import (
 )
 
 func PostApplicant(c *gin.Context) {
-	applicantRequest := models.Applicants{}
+	applicantRequest := models.ApplicantsRequest{}
 
 	if err := c.ShouldBindJSON(&applicantRequest); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
-
-	//************** pindah foto  base64 -> simpan ke local storage -> buat/ambil url
-	//  edit gin.Context KTPImage = URL, SelfieImage = URL
 
 	err := services.CreateApplicant(applicantRequest)
 	if err != nil {
@@ -25,9 +22,6 @@ func PostApplicant(c *gin.Context) {
 		return
 	}
 
-	//alamat
-
-	//hit api history
 	c.JSON(http.StatusCreated, gin.H{
 		"message": "Yeay Berhasil!",
 	})

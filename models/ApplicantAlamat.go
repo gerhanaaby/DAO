@@ -11,8 +11,8 @@ type ApplicantAlamat struct {
 	Kecamatan   string `gorm:"size:;not null;" validate:"required"`
 	Provinsi    string `gorm:"size:100;not null;" validate:"required"`
 	Kota        string `gorm:"size:100;not null;" validate:"required"`
-	RT          uint16 `gorm:"size:5;not null;" validate:"required"`
-	RW          uint16 `gorm:"size:5;not null;" validate:"required"`
-	KodePos     uint16 `gorm:"size:5;not null;" validate:"required"`
+	RT          string `gorm:"size:5;not null;" validate:"required"`
+	RW          string `gorm:"size:5;not null;" validate:"required"`
+	KodePos     string `gorm:"size:5;not null;" validate:"required"`
 	ApplicantID uint   `gorm:"size:256;not null;" validate:"required"`
 }
