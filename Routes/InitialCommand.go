@@ -13,6 +13,7 @@ import (
 )
 
 func initCommands() {
+	utils.LoadConfig()
 	database.ConnectDB()
 	cmdApp := cli.NewApp()
 	cmdApp.Commands = []cli.Command{
@@ -61,7 +62,7 @@ func Run() {
 	} else {
 		utils.LoadConfig()
 		database.ConnectDB()
-		database.DBMigrate()
+		CallRoutes()
 		Runing(":" + utils.CallConfig.Port)
 
 	}
