@@ -6,9 +6,10 @@ type Model struct {
 
 func RegisterModels() []Model {
 	return []Model{
-		{Model: Customer{}},
-		{Model: AlamatCustomer{}},
-		{Model: OfficeCustomer{}},
-		{Model: DataApplicant{}},
+		{Model: Applicants{}},
+		{Model: ApplicantAlamat{}},
+		{Model: ApplicantOffice{}},
+		{Model: ApplicantDataBank{}},
+		{Model: ApplicantHistory{}},
 	}
 }

@@ -4,7 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type DataApplicant struct {
+type ApplicantDataBank struct {
 	gorm.Model
 	ID                     uint   `validate:"isdefault"`
 	MonthlyDebitFreq       string `gorm:"size:256;not null;" validate:"required"`

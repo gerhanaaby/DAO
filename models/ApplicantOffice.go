@@ -4,7 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type OfficeCustomer struct {
+type ApplicantOffice struct {
 	gorm.Model
 	ID                uint   `validate:"isdefault"`
 	OfficeName        string `gorm:"size:256;not null;unique" validate:"isdefault"`
@@ -12,5 +12,5 @@ type OfficeCustomer struct {
 	OfficeZipCode     string `gorm:"size:256;not null;" validate:"required"`
 	OfficePhoneNumber string `gorm:"size:256;not null;" validate:"required"`
 	Pekerjaan         string `gorm:"size:256;not null;" validate:"required"`
-	CustomerID        string `gorm:"size:256;not null;" validate:"required"`
+	ApplicantID       string `gorm:"size:256;not null;" validate:"required"`
 }
