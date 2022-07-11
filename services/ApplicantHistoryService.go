@@ -6,6 +6,10 @@ import (
 )
 
 func CreateApplicantHistory(applicantHistory models.ApplicantHistory) error {
+	applicantHistory.Notes = "-"
+	applicantHistory.Status = "Complete"
+	applicantHistory.Step = 1
+	applicantHistory.ApplicantID = 1
 	err := database.GetDB().Debug().Create(&applicantHistory).Error
 	return err
 }

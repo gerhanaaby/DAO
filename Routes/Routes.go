@@ -6,10 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CallRoutes() {
+func CallRoutes(port string) {
 	router := gin.Default()
-	v1 := router.Group("/v1")
+	v1 := router.Group("/v1/")
 	v1.POST("/submitapplicant", controllers.PostApplicant)
 	v1.POST("/submithistory", controllers.PostApplicantHistory)
 	v1.PUT("/updatehistory/{ApplicantID}", controllers.PutApplicantHistory)
+	router.Run(port)
 }
