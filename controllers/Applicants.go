@@ -7,6 +7,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator"
 )
 
@@ -14,16 +16,14 @@ func PostApplicant(c *gin.Context) {
 
 	applicantRequest := models.ApplicantsRequest{}
 
-
-
 	KTPFile, errKTP := c.FormFile("KTPImage")
-	SelfieImageFile, errSelfie := c.FormFile("SelfieImage")
 	
+
 	if errKTP != nil {
 		c.AbortWithError(http.StatusInternalServerError, errKTP)
 		return
 	}
-	
+	SelfieImageFile, errSelfie := c.FormFile("SelfieImage")
 	if errSelfie != nil {
 		c.AbortWithError(http.StatusInternalServerError, errSelfie)
 		return
@@ -31,7 +31,7 @@ func PostApplicant(c *gin.Context) {
 	KTPPath := "images/KTP/" + KTPFile.Filename
 	SelfiePath := "images/SelfieKTP/" + SelfieImageFile.Filename
 
-	err := c.ShouldBind(&applicantRequest)
+	err := c.ShouldBind(&applicantRequest,binding.Form)
 	if err != nil {
 		//c.String(http.StatusInternalServerError, "error upload ktp image")
 		errorMessages := []string{}
