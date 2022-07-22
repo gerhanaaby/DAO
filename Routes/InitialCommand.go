@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"DAO/database"
-	"DAO/utils"
+	database "DAO/Database"
+	utils "DAO/Utils"
 	"flag"
 	"fmt"
 	"log"
