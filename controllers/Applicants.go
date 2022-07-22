@@ -8,7 +8,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator"
 )
 
@@ -17,7 +16,6 @@ func PostApplicant(c *gin.Context) {
 	applicantRequest := models.ApplicantsRequest{}
 
 	KTPFile, errKTP := c.FormFile("KTPImage")
-	
 
 	if errKTP != nil {
 		c.AbortWithError(http.StatusInternalServerError, errKTP)
@@ -28,46 +26,47 @@ func PostApplicant(c *gin.Context) {
 		c.AbortWithError(http.StatusInternalServerError, errSelfie)
 		return
 	}
+	
 	KTPPath := "images/KTP/" + KTPFile.Filename
 	SelfiePath := "images/SelfieKTP/" + SelfieImageFile.Filename
-
-	err := c.ShouldBind(&applicantRequest,binding.Form)
+	
+	err := c.c.PostFormMap(&applicantRequest)
 	if err != nil {
-		//c.String(http.StatusInternalServerError, "error upload ktp image")
+		//c.String(http.StatusInteralServerError, "error upload ktp image")
 		errorMessages := []string{}
 		for _, e := range err.(validator.ValidationErrors) {
-			errorMessage := fmt.Sprintf("error on field : %s, conditon: %s", e.Field(), e.ActualTag())
-			errorMessages = append(errorMessages, errorMessage)
-		}
+			errorMessage := fmt.Sprintf("error on field : %s, cnditon: %s", e.Field(), e.ActualTag())
+			rrorMessages = append(errorMessages, errorMessage)
+	}
 
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": errorMessages,
+		c.JSON(http.StatusBadReqest, gin.H{
+			"rror": errorMessages,
 		})
-		return
+		eturn
 	}
-	err1 := c.ShouldBindUri(&applicantRequest)
+	err1 := c.ShouldindUri(&applicantRequest)
 	if err1 != nil {
-		c.AbortWithError(http.StatusInternalServerError, err1)
-		return
+		c.AborWithError(http.StatusInternalServerError, err1)
+		eturn
 	}
-	err2 := c.SaveUploadedFile(applicantRequest.KTPImage, KTPPath)
+	err2 := c.SaveUpoadedFile(applicantRequest.KTPImage, KTPPath)
 	if err2 != nil {
-		c.String(http.StatusInternalServerError, "error upload ktp image")
-		return
+		c.Strig(http.StatusInternalServerError, "error upload ktp image")
+		eturn
 	}
-	err3 := c.SaveUploadedFile(applicantRequest.SelfieImage, SelfiePath)
+	err3 := c.SaveUpoadedFile(applicantRequest.SelfieImage, SelfiePath)
 	if err3 != nil {
-		c.String(http.StatusInternalServerError, "error upload selfie image")
-		return
-	}
+		c.Strig(http.StatusInternalServerError, "error upload selfie image")
+		eturn
+}
 
-	err4 := services.CreateApplicant(applicantRequest, KTPPath, SelfiePath)
+	err4 := servicesCreateApplicant(applicantRequest, KTPPath, SelfiePath)
 	if err4 != nil {
-		c.AbortWithError(http.StatusInternalServerError, err2)
-		return
-	}
+		c.AborWithError(http.StatusInternalServerError, err2)
+		eturn
+}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"message": "Successfully Submit Data Applicant!",
-	})
+		"Message": "Successfully Submit Data Applicant!",
+})
 }
