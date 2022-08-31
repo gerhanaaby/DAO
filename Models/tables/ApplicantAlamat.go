@@ -9,6 +9,7 @@ type ApplicantAlamat struct {
 	ID          uint   `validate:"isdefault"`
 	Alamat      string `gorm:"size:256;not null;" validate:"required"`
 	Kecamatan   string `gorm:"size:;not null;" validate:"required"`
+	Kelurahan   string `gorm:"size:;not null;" validate:"required"`
 	Provinsi    string `gorm:"size:100;not null;" validate:"required"`
 	Kota        string `gorm:"size:100;not null;" validate:"required"`
 	RT          string `gorm:"size:5;not null;" validate:"required"`

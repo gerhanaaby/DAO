@@ -1,8 +1,9 @@
 package routes
 
 import (
-	database "DAO/Database"
-	utils "DAO/Utils"
+	"DAO/controllers"
+	database "DAO/database"
+	utils "DAO/utils"
 	"flag"
 	"fmt"
 	"log"
@@ -64,6 +65,7 @@ func Run() {
 	} else {
 		utils.LoadConfig()
 		database.ConnectDB()
+		controllers.PostStartQueue()
 		Runing(":" + utils.CallConfig.Port)
 
 	}

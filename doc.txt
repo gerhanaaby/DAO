@@ -1,0 +1,8 @@
+1 Submit  - COmple
+2 Sync - OnProgress => fail, complete
+3 Long - OnProgress => fail, complete
+//
+4 Create ACc - OnProgress => Reject on fail, complete
+5 App Complete - OnProgress => Reject on fail, complete 
+
+select where (status = Fail || status = COmplete ) && (step != Create Acc || step != App Complete)  

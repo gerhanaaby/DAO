@@ -2,7 +2,7 @@ package services
 
 import (
 	"DAO/database"
-	"DAO/models"
+	models "DAO/models/tables"
 )
 
 func CreateApplicantHistory(applicantHistory models.ApplicantHistory) error {

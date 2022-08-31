@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"DAO/models"
+	models "DAO/models/tables"
 	"DAO/services"
 	"net/http"
 
@@ -47,3 +47,13 @@ func PutApplicantHistory(c *gin.Context) {
 		"message": "Yeay Berhasil! History",
 	})
 }
+
+// type DataTest struct {
+// 	Nama string
+// 	Kelas string
+// }
+
+// var DataTestArr []DataTest
+
+// for
+// 	DataTestArr[i]

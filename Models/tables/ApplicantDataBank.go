@@ -21,3 +21,5 @@ type ApplicantDataBank struct {
 	OnSubmit               string `gorm:"size:256;not null;" validate:"required"`
 	CustomerConsent        string `gorm:"size:256;not null;" validate:"required"`
 }
+
+//version

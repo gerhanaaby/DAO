@@ -1,15 +1,17 @@
 package models
 
+import table "DAO/models/tables"
+
 type Model struct {
 	Model interface{}
 }
 
 func RegisterModels() []Model {
 	return []Model{
-		{Model: Applicants{}},
-		{Model: ApplicantAlamat{}},
-		{Model: ApplicantOffice{}},
-		{Model: ApplicantDataBank{}},
-		{Model: ApplicantHistory{}},
+		{Model: table.Applicants{}},
+		{Model: table.ApplicantHistory{}},
+		{Model: table.ApplicantDataBank{}},
+		{Model: table.ApplicantOffice{}},
+		{Model: table.ApplicantAlamat{}},
 	}
 }
