@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"DAO/routes"
+)
 
 func main() {
 
-	fmt.Printf("hellow")
+	routes.Run()
 }
