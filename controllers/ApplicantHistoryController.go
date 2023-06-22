@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	models "DAO/models/tables"
-	"DAO/services"
+	models "DAO/Models/tables"
+	services "DAO/Services"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

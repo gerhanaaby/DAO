@@ -2,7 +2,7 @@ package Database
 
 import (
 	"DAO/Models"
-	"DAO/utils"
+	utils "DAO/Utils"
 	"fmt"
 	"log"
 

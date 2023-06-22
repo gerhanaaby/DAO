@@ -1,4 +1,4 @@
-package models
+package Models
 
 type ApplicationComplete struct {
 	CIF        string `json:"service"`

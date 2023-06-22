@@ -1,4 +1,4 @@
-package models
+package Models
 
 type SubmitApplicants struct {
 	Cif_Code               string  `json:"cif_code"`

@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"DAO/models/request"
-	"DAO/services"
-	"DAO/utils"
+	Models "DAO/Models/request"
+	services "DAO/Services"
+	utils "DAO/Utils"
 	"encoding/json"
 	"net/http"
 	"strconv"
@@ -12,7 +12,7 @@ import (
 )
 
 func PostScreening(c *gin.Context) {
-	screeningRequest := models.Screening{}
+	screeningRequest := Models.Screening{}
 
 	var errPos = ``
 

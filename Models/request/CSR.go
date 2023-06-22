@@ -1,4 +1,4 @@
-package models
+package Models
 
 type CSR struct {
 	Service      string     `json:"service"`

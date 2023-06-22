@@ -1,9 +1,9 @@
 package services
 
 import (
-	"DAO/database"
-	request "DAO/models/request"
-	table "DAO/models/tables"
+	"DAO/Database"
+	request "DAO/Models/request"
+	table "DAO/Models/tables"
 	"fmt"
 	"strconv"
 	"time"
@@ -72,7 +72,7 @@ func CreateApplicant(applicant request.SubmitApplicants, KTPImage string, Selfie
 	dataApplicant.ApplicantHistory.Status = "Complete"
 	dataApplicant.ApplicantHistory.Step = 1
 	fmt.Println(dataApplicant)
-	err := database.GetDB().Debug().Create(&dataApplicant).Error
+	err := Database.GetDB().Debug().Create(&dataApplicant).Error
 
 	return err
 }
@@ -80,5 +80,5 @@ func CreateApplicant(applicant request.SubmitApplicants, KTPImage string, Selfie
 func GetApplicant() {
 	// var dataApplicant []table.Applicants
 	//var applicantHistory table.ApplicantHistory
-	database.GetDB().Debug().Joins("JOIN applicant_histories ON applicant_histories.applicant_id = applicants.id AND applicant_histories.status = ?", "Complete").Limit(200).Find(&table.AppQ)
+	Database.GetDB().Debug().Joins("JOIN applicant_histories ON applicant_histories.applicant_id = applicants.id AND applicant_histories.status = ?", "Complete").Limit(200).Find(&table.AppQ)
 }
