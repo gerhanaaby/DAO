@@ -1,8 +1,9 @@
 package routes
 
 import (
-	"DAO/database"
-	"DAO/utils"
+	"DAO/controllers"
+	database "DAO/database"
+	utils "DAO/utils"
 	"flag"
 	"fmt"
 	"log"
@@ -13,6 +14,7 @@ import (
 )
 
 func initCommands() {
+	utils.LoadConfig()
 	database.ConnectDB()
 	cmdApp := cli.NewApp()
 	cmdApp.Commands = []cli.Command{
@@ -49,7 +51,9 @@ func initCommands() {
 func Runing(addr string) {
 	fmt.Println("Welcome to DAO")
 	fmt.Printf("Listening to port %s", addr)
+	CallRoutes(addr)
 	log.Fatal(http.ListenAndServe(addr, nil))
+
 }
 
 func Run() {
@@ -61,7 +65,7 @@ func Run() {
 	} else {
 		utils.LoadConfig()
 		database.ConnectDB()
-		database.DBMigrate()
+		controllers.PostStartQueue()
 		Runing(":" + utils.CallConfig.Port)
 
 	}
